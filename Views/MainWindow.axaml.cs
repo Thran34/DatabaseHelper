@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace DatabaseHelper.Views
 {
@@ -7,6 +8,12 @@ namespace DatabaseHelper.Views
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_OnClick(object? sender, RoutedEventArgs e)
+        {
+            var k = new GetStartedWindow();
+            k.Show();
         }
     }
 }

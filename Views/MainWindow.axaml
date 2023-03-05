@@ -7,45 +7,63 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="DatabaseHelper">
-        <Grid Background="White">
-        <Design.DataContext>
-            <viewModels:MainWindowViewModel/>
-        </Design.DataContext>
+	<Grid Background="White">
+		<Design.DataContext>
+			<viewModels:MainWindowViewModel/>
+		</Design.DataContext>
+        
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="150">
+			<Image Source="\Assets\databaseicon.ico">
+            </Image>
+        </StackPanel>
 
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right">
-            <TextBlock Text="Welcome to Database Helper app!"
+		<StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+			<TextBlock Text="Welcome to Database Helper app!"
                        FontSize="16"
                        FontWeight="Bold"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top" />
-            <Button Content="Get Started"
+                       FontFamily="Constantia"/>
+		</StackPanel>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
+			<Button Content="Get Started"
                     FontSize="18"
                     FontWeight="Bold"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Background="LightGreen"/>
-        </StackPanel>
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Button Background="LightBlue" Width="75" Height="75">
-                <Button.Content>
-                    <Image Source="/Assets/vector.ico" Width="60" Height="60" />
-                </Button.Content>
-            </Button>
-            <Button Background="LightBlue" Width="75" Height="75">
-                <Button.Content>
-                    <Image Source="/Assets/DataImport.ico" Width="60" Height="60" />
-                </Button.Content>
-            </Button>
-            <Button Background="LightBlue" Width="75" Height="75">
-                <Button.Content>
-                    <Image Source="/Assets/Code.ico" Width="60" Height="60" />
-                </Button.Content>
-            </Button>
-            <Button Background="LightBlue" Width="75" Height="75">
-                <Button.Content>
-                    <Image Source="/Assets/disket.ico" Width="60" Height="60" />
-                </Button.Content>
-            </Button>
-        </StackPanel>
-    </Grid>
+                    Background="LightGreen"
+                    Click="Button_OnClick"/>
+		</StackPanel>
+
+		<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Name="ControlPanel">
+			<Border ToolTip.Tip="Database schema creator">
+				<Button Background="LightBlue" Width="75" Height="75">
+					<Button.Content>
+						<Image Source="/Assets/vector.ico" Width="60" Height="60" />
+					</Button.Content>
+				</Button>
+			</Border>
+			<Border ToolTip.Tip="Convert files">
+				<Button Background="LightBlue" Width="75" Height="75">
+					<Button.Content>
+						<Image Source="/Assets/DataImport.ico" Width="60" Height="60" />
+					</Button.Content>
+				</Button>
+			</Border>
+			<Border ToolTip.Tip="Query editor">
+				<Button Background="LightBlue" Width="75" Height="75">
+					<Button.Content>
+						<Image Source="/Assets/Code.ico" Width="60" Height="60" />
+					</Button.Content>
+				</Button>
+			</Border>
+			<Border ToolTip.Tip="Data Store">
+				<Button Background="LightBlue" Width="75" Height="75">
+					<Button.Content>
+						<Image Source="/Assets/disket.ico" Width="60" Height="60" />
+					</Button.Content>
+				</Button>
+			</Border>
+		</StackPanel>
+
+	</Grid>
 </Window>
