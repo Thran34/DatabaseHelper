@@ -1,21 +1,51 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:DatabaseHelper.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:DatabaseHelper.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
+        Height="300" Width="500"
         x:Class="DatabaseHelper.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="DatabaseHelper">
+        <Grid Background="White">
+        <Design.DataContext>
+            <viewModels:MainWindowViewModel/>
+        </Design.DataContext>
 
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <viewModels:MainWindowViewModel/>
-    </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right">
+            <TextBlock Text="Welcome to Database Helper app!"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Top" />
+            <Button Content="Get Started"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="LightGreen"/>
+        </StackPanel>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Button Background="LightBlue" Width="75" Height="75">
+                <Button.Content>
+                    <Image Source="/Assets/vector.ico" Width="60" Height="60" />
+                </Button.Content>
+            </Button>
+            <Button Background="LightBlue" Width="75" Height="75">
+                <Button.Content>
+                    <Image Source="/Assets/DataImport.ico" Width="60" Height="60" />
+                </Button.Content>
+            </Button>
+            <Button Background="LightBlue" Width="75" Height="75">
+                <Button.Content>
+                    <Image Source="/Assets/Code.ico" Width="60" Height="60" />
+                </Button.Content>
+            </Button>
+            <Button Background="LightBlue" Width="75" Height="75">
+                <Button.Content>
+                    <Image Source="/Assets/disket.ico" Width="60" Height="60" />
+                </Button.Content>
+            </Button>
+        </StackPanel>
+    </Grid>
 </Window>
