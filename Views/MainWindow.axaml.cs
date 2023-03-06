@@ -13,7 +13,7 @@ namespace DatabaseHelper.Views
         private void Button_OnClick(object? sender, RoutedEventArgs e)
         {
             var k = new GetStartedWindow();
-            k.Show();
+            Content = k.Content;
         }
     }
 }
