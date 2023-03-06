@@ -15,5 +15,11 @@ namespace DatabaseHelper.Views
             var k = new GetStartedWindow();
             Content = k.Content;
         }
+
+        private void Button_OnClick_Login(object? sender, RoutedEventArgs e)
+        {
+            var loginWindow = new LoginWindow();
+            loginWindow.Show();
+        }
     }
 }

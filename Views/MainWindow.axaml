@@ -11,13 +11,23 @@
 		<viewModels:MainWindowViewModel/>
 	</Design.DataContext>
 	<Grid Background="#4b0082">
-        <Grid Grid.Column="0" HorizontalAlignment="Left" Background="#483d8b">
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="\Assets\databaseicon.ico" Width="200" Height="150" VerticalAlignment="Top">
-            </Image>
-        </Grid>
+		<Grid Grid.Column="0" HorizontalAlignment="Left" Background="#483d8b">
+			<Grid.ColumnDefinitions >
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+
+			<Grid VerticalAlignment="Top">
+				<Image Source="\Assets\databaseicon.ico" Width="200" Height="150" HorizontalAlignment="Center" VerticalAlignment="Top">
+				</Image>
+				<Image Source="\Assets\csharp.ico" Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+				</Image>
+			</Grid>
+
+
+			<Button Content="Login" Margin="0,0,0,20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                    Click="Button_OnClick_Login" Width="175" Height="50" FontSize="20" Background="LightYellow">
+            </Button>
+		</Grid>
 		<Grid Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,40">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="auto" />
