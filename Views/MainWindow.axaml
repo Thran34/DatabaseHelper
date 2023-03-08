@@ -12,46 +12,64 @@
 	<Design.DataContext>
 		<viewModels:MainWindowViewModel />
 	</Design.DataContext>
-	<Grid Background="#4b0082">
-		<Grid Background="LightBlue" Height="25" VerticalAlignment="Top" />
-		<Grid Background="#483d8b" HorizontalAlignment="Left">
+	<Grid Background="#e6e6fa">
+		<Grid Background="#4b0082" Height="35" VerticalAlignment="Top" />
+
+		<Grid Background="#fffff0" HorizontalAlignment="Left">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-			<Grid VerticalAlignment="Top">
-				<Image Source="\Assets\databaseicon.ico" Width="200" Height="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,45,0,0" />
-				<Image Source="\Assets\csharp.ico" Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+			<Grid Background="#4b0082" VerticalAlignment="Top">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="35" />
+				</Grid.RowDefinitions>
 			</Grid>
+
+			<Grid VerticalAlignment="Top">
+				<Image Source="\Assets\databaseicon.ico" Width="200" Height="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
+				<Image Source="\Assets\csharp.ico" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,0,0" />
+			</Grid>
+
 			<Grid>
-				<Button Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="LightYellow" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,90" Click="Button_OnClick_Login" />
-				<Button Content="Register" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="LightYellow" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" Click="Button_OnClick_Login" />
+				<Button Content="Login" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,115" Click="Button_OnClick_Login">
+                </Button>
+				<Button Content="Register" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,45" Click="Button_OnClick_Login" />
 			</Grid>
 		</Grid>
-		<Grid Background="LightBlue" Height="40" VerticalAlignment="Top">
-            <Grid HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
-                    <Button.Content>
-                        <Image Source="/Assets/minimize.ico" Width="30" Height="30" />
-                    </Button.Content>
-                </Button>
-                <Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Red" Click="ExitApp">
-                    <Button.Content>
-                        <Image Source="/Assets/exit.ico" Width="30" Height="30" />
-                    </Button.Content>
-                </Button>
-            </Grid>
-        </Grid>
+
+		<Grid>
+			<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+				<Button Width="30" Height="30" Margin="0,5,85,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitApp">
+					<Button.Content>
+						<Image Source="/Assets/user.ico" Width="30" Height="30" />
+					</Button.Content>
+				</Button>
+				<Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
+					<Button.Content>
+						<Image Source="/Assets/minimize.ico" Width="30" Height="30" />
+					</Button.Content>
+				</Button>
+				<Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitApp">
+					<Button.Content>
+						<Image Source="/Assets/exit.ico" Width="30" Height="30" />
+					</Button.Content>
+				</Button>
+			</Grid>
+		</Grid>
+
 		<Grid Margin="0,0,30,40" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
+
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
+
 			<Button Grid.Row="0" Grid.Column="0" Margin="15" Background="LightBlue">
 				<Button.Content>
 					<Image Source="/Assets/vector.ico" Width="110" Height="110" />
