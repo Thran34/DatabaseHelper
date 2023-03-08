@@ -6,7 +6,8 @@
         x:Class="DatabaseHelper.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="DatabaseHelper">
+        Title="DatabaseHelper"
+        HasSystemDecorations="False">
 	<Design.DataContext>
 		<viewModels:MainWindowViewModel/>
 	</Design.DataContext>
@@ -22,12 +23,30 @@
 				<Image Source="\Assets\csharp.ico" Width="80" Height="80" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 				</Image>
 			</Grid>
-
-
-			<Button Content="Login" Margin="0,0,0,20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
-                    Click="Button_OnClick_Login" Width="175" Height="50" FontSize="20" Background="LightYellow">
+			<Grid>
+				<Button Content="Login" Margin="0,0,0,90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+						Click="Button_OnClick_Login" Width="175" Height="50" FontSize="20" Background="LightYellow">
+				</Button>
+				<Button Content="Register" Margin="0,0,0,20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+						Click="Button_OnClick_Login" Width="175" Height="50" FontSize="20" Background="LightYellow">
+				</Button>
+			</Grid>
+		</Grid>
+		<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button Margin="0,0,45,0" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Background="Transparent" Click="MinimizeApp">
+                <Button.Content>
+                    <Image Source="/Assets/minimize.ico"  Width="30" Height="30" />
+                </Button.Content>
+            </Button>
+            <Button Margin="0,5,10,0" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Background="Transparent" Click="ExitApp">
+                <Button.Content>
+                    <Image Source="/Assets/exit.ico"  Width="30" Height="30" />
+                </Button.Content>
             </Button>
 		</Grid>
+
 		<Grid Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,30,40">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="auto" />

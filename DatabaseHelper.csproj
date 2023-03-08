@@ -18,6 +18,8 @@
     <None Remove="Assets\databaseicon.ico" />
     <None Remove="Assets\DataImport.ico" />
     <None Remove="Assets\disket.ico" />
+    <None Remove="Assets\exit.ico" />
+    <None Remove="Assets\minimize.ico" />
     <None Remove="Assets\vector.ico" />
   </ItemGroup>
 
