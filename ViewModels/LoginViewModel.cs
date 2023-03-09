@@ -4,7 +4,17 @@
     {
         public static bool ValidateUserCredentials(string username, string password)
         {
-            throw new System.NotImplementedException();
+            using (var context = new Context.Context())
+            {
+                foreach (var user in context.Users)
+                {
+                    if (username == user.Login && password == user.Password)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
     }
 }

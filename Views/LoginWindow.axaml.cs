@@ -15,23 +15,20 @@ public partial class LoginWindow : Window
     {
         string username = UsernameTextBox.Text;
         string password = PasswordBox.Text;
-
+        MainWindow mainWindow = new MainWindow();
+        var getStartedWindow = new GetStartedWindow();
         // Validate the user's credentials
         bool isValid = LoginViewModel.ValidateUserCredentials(username, password);
 
         if (isValid)
         {
-            // Create a session for the user
-            //UserSession.CreateSession(username);
-
-            // Navigate to the main application window
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            getStartedWindow.Show();
             Close();
         }
         else
         {
-
+            mainWindow.Show();
+            Close();
         }
     }
 }
