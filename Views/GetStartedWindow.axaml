@@ -3,7 +3,8 @@
         xmlns:viewModels="clr-namespace:DatabaseHelper.ViewModels"
         Height="300" Width="500"
         x:Class="DatabaseHelper.GetStartedWindow"
-        Title="GetStartedWindow">
+        Title="GetStartedWindow"
+        WindowStartupLocation="CenterScreen">
 	<Grid>
     </Grid>
 </Window>

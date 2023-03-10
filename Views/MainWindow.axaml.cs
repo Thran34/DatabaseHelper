@@ -40,12 +40,27 @@ namespace DatabaseHelper.Views
             {
                 getStartedWindow.Show();
             }
+            else
+            {
+                var errorWindow = new ErrorWindow();
+                errorWindow.Show();
+            }
         }
 
         private void RegisterUser(object? sender, RoutedEventArgs e)
         {
             var registerUserWindow = new RegisterUserWindow();
             registerUserWindow.Show();
+        }
+
+        private void LearnDotNet(object? sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://learn.microsoft.com/en-us/dotnet/");
+        }
+
+        private async void LearnSql(object? sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://learn.microsoft.com/en-us/sql/?view=sql-server-ver16");
         }
     }
 }

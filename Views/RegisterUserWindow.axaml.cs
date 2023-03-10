@@ -22,5 +22,20 @@ public partial class RegisterUserWindow : Window
         {
             Close();
         }
+        else
+        {
+            var errorWindow = new ErrorWindow();
+            errorWindow.Show();
+        }
+    }
+
+    private void ExitWindow(object? sender, RoutedEventArgs e)
+    {
+        Close();
+    }
+
+    private void MinimizeWindow(object? sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
     }
 }
