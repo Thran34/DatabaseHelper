@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using DatabaseHelper.ViewModels;
 using System;
 
 namespace DatabaseHelper.Views
@@ -17,12 +18,6 @@ namespace DatabaseHelper.Views
             Content = k.Content;
         }
 
-        private void Button_OnClick_Login(object? sender, RoutedEventArgs e)
-        {
-            var loginWindow = new LoginWindow();
-            loginWindow.Show();
-        }
-
         private void ExitApp(object? sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
@@ -31,6 +26,26 @@ namespace DatabaseHelper.Views
         private void MinimizeApp(object? sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void LoginUser(object? sender, RoutedEventArgs e)
+        {
+            string username = UsernameTextBox.Text;
+            string password = PasswordBox.Text;
+            var mainWindow = new MainWindow();
+            var getStartedWindow = new GetStartedWindow();
+            bool isValid = MainWindowViewModel.ValidateUserCredentials(username, password);
+
+            if (isValid)
+            {
+                getStartedWindow.Show();
+            }
+        }
+
+        private void RegisterUser(object? sender, RoutedEventArgs e)
+        {
+            var registerUserWindow = new RegisterUserWindow();
+            registerUserWindow.Show();
         }
     }
 }

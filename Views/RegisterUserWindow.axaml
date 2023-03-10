@@ -1,0 +1,18 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Height="400" Width="500"
+        x:Class="DatabaseHelper.RegisterUserWindow"
+        Title="RegisterUserWindow"
+        HasSystemDecorations="False">
+	<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Margin="100,0,100,90">
+        <StackPanel>
+            <TextBlock Text="Username" HorizontalAlignment="Center" FontSize="19"/>
+            <TextBox x:Name="UsernameTextBox" />
+            <TextBlock Text="Password" HorizontalAlignment="Center" FontSize="19"/>
+            <TextBox x:Name="PasswordBox" />
+            <Button Content="Register" HorizontalAlignment="Center" FontSize="19" Click="RegisterUser"/>
+        </StackPanel>
+    </Grid>
+</Window>
