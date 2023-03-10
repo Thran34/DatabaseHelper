@@ -10,7 +10,7 @@ public partial class ErrorWindow : Window
         InitializeComponent();
     }
 
-    private void Close(object? sender, RoutedEventArgs e)
+    private void ExitWindow(object? sender, RoutedEventArgs e)
     {
         Close();
     }
