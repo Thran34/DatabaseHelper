@@ -34,8 +34,8 @@
                 
 
 			<Grid>
-				<Button CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn .NET" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,115" Click="LearnDotNet"/>
-                <Button CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn SQL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,45" Click="LearnSql" />
+				<Button Foreground="White" CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn .NET" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,115" Click="LearnDotNet"/>
+                <Button Foreground="White" CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn SQL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,45" Click="LearnSql" />
 			</Grid>
 		</Grid>
 
@@ -62,9 +62,9 @@
 		<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Margin="300,0,150,90">
 			<StackPanel>
             <TextBlock Text="Username" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
-                <TextBox x:Name="UsernameTextBox" />
+                <TextBox x:Name="UsernameTextBox" HorizontalContentAlignment="Center" FontWeight="Bold"/>
                 <TextBlock Text="Password" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
-                <TextBox x:Name="PasswordBox" />
+                <TextBox x:Name="PasswordBox" PasswordChar="*" HorizontalContentAlignment="Center" FontWeight="Bold"/>
                 <Button Content="Login" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19" Click="LoginUser"/>
             </StackPanel>
         </Grid>
