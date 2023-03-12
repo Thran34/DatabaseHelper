@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DatabaseHelper.ViewModels;
 using System;
+using System.Threading.Tasks;
 
 namespace DatabaseHelper.Views
 {
@@ -28,13 +29,13 @@ namespace DatabaseHelper.Views
             WindowState = WindowState.Minimized;
         }
 
-        private void LoginUser(object? sender, RoutedEventArgs e)
+        private async void LoginUser(object? sender, RoutedEventArgs e)
         {
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Text;
             var mainWindow = new MainWindow();
             var getStartedWindow = new GetStartedWindow();
-            bool isValid = MainWindowViewModel.ValidateUserCredentials(username, password);
+            bool isValid = await Task.Run(() => MainWindowViewModel.ValidateUserCredentials(username, password));
 
             if (isValid)
             {
@@ -46,6 +47,7 @@ namespace DatabaseHelper.Views
                 errorWindow.Show();
             }
         }
+
 
         private void RegisterUser(object? sender, RoutedEventArgs e)
         {
