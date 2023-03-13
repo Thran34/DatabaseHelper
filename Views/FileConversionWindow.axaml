@@ -1,0 +1,57 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DatabaseHelper.FileConversionWindow"
+        Height="600" Width="900"
+        Icon="/Assets/avalonia-logo.ico"
+        WindowStartupLocation="CenterScreen"
+        HasSystemDecorations="False"
+        Title="FileConversionWindow">
+  
+	<Grid Background="#e6e6fa">
+        <Grid Background="#4b0082" Height="35" VerticalAlignment="Top" />
+        <Grid Background="#fffff0" HorizontalAlignment="Left">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Grid Background="#4b0082" VerticalAlignment="Top">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="35" />
+				</Grid.RowDefinitions>
+			</Grid>
+
+			<Grid VerticalAlignment="Top">
+				<Image Source="\Assets\databaseicon.ico" Width="200" Height="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
+				<Image Source="\Assets\csharp.ico" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,0,0" />
+			</Grid>
+        </Grid>
+
+		<Grid>
+			<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Width="30" Height="30" Margin="0,5,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
+                    <Button.Content>
+                        <Image Source="/Assets/arrow.ico" Width="30" Height="30" />
+                    </Button.Content>
+                </Button>
+				<Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ShowUserInfo">
+					<Button.Content>
+						<Image Source="/Assets/user.ico" Width="30" Height="30" />
+					</Button.Content>
+				</Button>
+				<Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
+					<Button.Content>
+						<Image Source="/Assets/minimize.ico" Width="30" Height="30" />
+					</Button.Content>
+				</Button>
+				<Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitApp">
+					<Button.Content>
+						<Image Source="/Assets/exit.ico" Width="30" Height="30" />
+					</Button.Content>
+				</Button>
+			</Grid>
+		</Grid>
+    </Grid>
+</Window>

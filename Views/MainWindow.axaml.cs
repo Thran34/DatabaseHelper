@@ -64,5 +64,12 @@ namespace DatabaseHelper.Views
         {
             System.Diagnostics.Process.Start("https://learn.microsoft.com/en-us/sql/?view=sql-server-ver16");
         }
+
+        private void OpenFileConverter(object? sender, RoutedEventArgs e)
+        {
+            var fileConversionWindow = new FileConversionWindow();
+            fileConversionWindow.Show();
+            Close();
+        }
     }
 }

@@ -86,7 +86,7 @@
 					<Image Source="/Assets/vector.ico" Width="110" Height="110" />
 				</Button.Content>
 			</Button>
-			<Button Grid.Row="0" Grid.Column="1" Margin="15" Background="LightGreen">
+			<Button Grid.Row="0" Grid.Column="1" Margin="15" Background="LightGreen" Click="OpenFileConverter">
 				<Button.Content>
 					<Image Source="/Assets/DataImport.ico"  Width="110" Height="110" />
 				</Button.Content>

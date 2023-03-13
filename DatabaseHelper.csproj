@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\arrow.ico" />
     <None Remove="Assets\Code.ico" />
     <None Remove="Assets\csharp.ico" />
     <None Remove="Assets\databaseicon.ico" />
