@@ -9,10 +9,11 @@
         WindowStartupLocation="CenterScreen"
         HasSystemDecorations="False"
         Title="FileConversionWindow">
-  
+
 	<Grid Background="#e6e6fa">
-        <Grid Background="#4b0082" Height="35" VerticalAlignment="Top" />
-        <Grid Background="#fffff0" HorizontalAlignment="Left">
+
+		<Grid Background="#4b0082" Height="35" VerticalAlignment="Top" />
+		<Grid Background="#fffff0" HorizontalAlignment="Left">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
@@ -27,15 +28,15 @@
 				<Image Source="\Assets\databaseicon.ico" Width="200" Height="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
 				<Image Source="\Assets\csharp.ico" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,0,0" />
 			</Grid>
-        </Grid>
+		</Grid>
 
 		<Grid>
 			<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Width="30" Height="30" Margin="0,5,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
-                    <Button.Content>
-                        <Image Source="/Assets/arrow.ico" Width="30" Height="30" />
-                    </Button.Content>
-                </Button>
+				<Button Width="30" Height="30" Margin="0,5,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
+					<Button.Content>
+						<Image Source="/Assets/arrow.ico" Width="30" Height="30" />
+					</Button.Content>
+				</Button>
 				<Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ShowUserInfo">
 					<Button.Content>
 						<Image Source="/Assets/user.ico" Width="30" Height="30" />
@@ -53,5 +54,12 @@
 				</Button>
 			</Grid>
 		</Grid>
+		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,0,0,0" Text="Select file to upload:"/>
+		<TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,0,0,60" Name="FilePathTextBox"/>
+		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 150,0,0,60"
+                Content="Browse" />
+		<ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" Minimum="0" Maximum="100" Margin=" 0,50,0,0"></ProgressBar>
+		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,100,0,0"
+                Content="Upload"/>
     </Grid>
 </Window>
