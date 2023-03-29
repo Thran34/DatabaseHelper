@@ -9,6 +9,15 @@
         Icon="/Assets/avalonia-logo.ico"
         WindowStartupLocation="CenterScreen"
         HasSystemDecorations="False">
+	<Window.Styles>
+		<Style Selector="Button">
+			<Setter Property="Opacity" Value="1"/>
+		</Style>
+		<Style Selector="Button:pointerover">
+			<Setter Property="Opacity" Value="0.75"/>
+			<Setter Property="Background" Value="Red"/>
+		</Style>
+	</Window.Styles>
 
 	<Design.DataContext>
 		<viewModels:MainWindowViewModel />
@@ -31,11 +40,23 @@
 				<Image Source="\Assets\databaseicon.ico" Width="200" Height="150" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,5,0,0" />
 				<Image Source="\Assets\csharp.ico" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,20,0,0" />
 			</Grid>
-                
+
 
 			<Grid>
-				<Button Foreground="White" CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn .NET" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,115" Click="LearnDotNet"/>
-                <Button Foreground="White" CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn SQL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,45" Click="LearnSql" />
+				<Button Foreground="White" CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn .NET" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,115" Click="LearnDotNet">
+					<Button.Transitions>
+						<Transitions>
+							<DoubleTransition Property="Opacity" Duration="0:0:0.5"/>
+						</Transitions>
+					</Button.Transitions>
+				</Button>
+				<Button Foreground="White" CornerRadius="25" Padding="6" FontWeight="Bold" Content="Learn SQL" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="175" Height="50" FontSize="20" Background="#9932cc" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,45" Click="LearnSql">
+					<Button.Transitions>
+						<Transitions>
+							<DoubleTransition Property="Opacity" Duration="0:0:0.5"/>
+						</Transitions>
+					</Button.Transitions>
+				</Button>
 			</Grid>
 		</Grid>
 
@@ -45,7 +66,7 @@
 					<Button.Content>
 						<Image Source="/Assets/user.ico" Width="30" Height="30" />
 					</Button.Content>
-                </Button>
+				</Button>
 				<Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
 					<Button.Content>
 						<Image Source="/Assets/minimize.ico" Width="30" Height="30" />
@@ -61,13 +82,19 @@
 
 		<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Margin="300,0,150,90">
 			<StackPanel>
-            <TextBlock Text="Username" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
-                <TextBox x:Name="UsernameTextBox" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-                <TextBlock Text="Password" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
-                <TextBox x:Name="PasswordBox" PasswordChar="*" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-                <Button Content="Login" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19" Click="LoginUser"/>
-            </StackPanel>
-        </Grid>
+				<TextBlock Text="Username" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
+				<TextBox x:Name="UsernameTextBox" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+				<TextBlock Text="Password" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
+				<TextBox x:Name="PasswordBox" PasswordChar="*" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+				<Button Content="Login" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19" Click="LoginUser">
+					<Button.Transitions>
+						<Transitions>
+							<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+						</Transitions>
+					</Button.Transitions>
+				</Button>
+			</StackPanel>
+		</Grid>
 
 		<Grid Margin="0,0,30,40" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 			<Grid.RowDefinitions>
@@ -85,21 +112,41 @@
 				<Button.Content>
 					<Image Source="/Assets/vector.ico" Width="110" Height="110" />
 				</Button.Content>
+				<Button.Transitions>
+					<Transitions>
+						<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+					</Transitions>
+				</Button.Transitions>
 			</Button>
 			<Button Grid.Row="0" Grid.Column="1" Margin="15" Background="LightGreen" Click="OpenFileConverter">
 				<Button.Content>
 					<Image Source="/Assets/DataImport.ico"  Width="110" Height="110" />
 				</Button.Content>
+				<Button.Transitions>
+					<Transitions>
+						<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+					</Transitions>
+				</Button.Transitions>
 			</Button>
 			<Button Grid.Row="0" Grid.Column="2" Margin="15"  Background="Yellow">
 				<Button.Content>
 					<Image Source="/Assets/Code.ico"  Width="110" Height="110" />
 				</Button.Content>
+				<Button.Transitions>
+					<Transitions>
+						<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+					</Transitions>
+				</Button.Transitions>
 			</Button>
 			<Button Grid.Row="0" Grid.Column="3" Margin="15"  Background="Purple">
 				<Button.Content>
 					<Image Source="/Assets/disket.ico"  Width="110" Height="110" />
 				</Button.Content>
+				<Button.Transitions>
+					<Transitions>
+						<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+					</Transitions>
+				</Button.Transitions>
 			</Button>
 		</Grid>
 	</Grid>
