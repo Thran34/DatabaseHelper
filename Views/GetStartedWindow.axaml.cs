@@ -1,8 +1,10 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using DatabaseHelper.Models;
 using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.ObjectModel;
 
 namespace DatabaseHelper;
@@ -50,5 +52,15 @@ public partial class GetStartedWindow : Window
         }
 
         dataTable.Items = users;
+    }
+
+    private void ExitApp(object? sender, RoutedEventArgs e)
+    {
+        Environment.Exit(0);
+    }
+
+    private void MinimizeApp(object? sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
     }
 }
