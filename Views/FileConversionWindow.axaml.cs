@@ -32,4 +32,9 @@ public partial class FileConversionWindow : Window
         mainWindow.Show();
         Close();
     }
+
+    private void BrowseFileExplorer(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

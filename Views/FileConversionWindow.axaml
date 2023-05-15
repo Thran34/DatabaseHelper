@@ -57,7 +57,7 @@
 		<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,0,0,0" Text="Select file to upload:"/>
 		<TextBox HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,0,0,60" Name="FilePathTextBox"/>
 		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 150,0,0,60"
-                Content="Browse" />
+                Content="Browse" Click="BrowseFileExplorer" />
 		<ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" Minimum="0" Maximum="100" Margin=" 0,50,0,0"></ProgressBar>
 		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,100,0,0"
                 Content="Upload"/>
