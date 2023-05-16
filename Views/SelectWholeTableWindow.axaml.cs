@@ -2,17 +2,18 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using DatabaseHelper.Models;
 using DatabaseHelper.Views;
 using Microsoft.Data.SqlClient;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 
 namespace DatabaseHelper;
 
 public partial class SelectWholeTableWindow : Window
 {
-    private ObservableCollection<Models.User> users;
+    private ObservableCollection<object> users;
 
     public SelectWholeTableWindow()
     {
@@ -27,7 +28,7 @@ public partial class SelectWholeTableWindow : Window
     private void InitializeComponent(string selectedTable, string selectedDatabase)
     {
         AvaloniaXamlLoader.Load(this);
-        users = new ObservableCollection<User>();
+        users = new ObservableCollection<object>();
         dataTable = this.FindControl<DataGrid>("dataTable");
         PopulateDataTable(selectedTable, selectedDatabase);
     }
@@ -40,20 +41,21 @@ public partial class SelectWholeTableWindow : Window
             SqlCommand command = new SqlCommand(commandq, connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read())
+
+            DataTable dataTablee = new DataTable();
+            dataTablee.Load(reader);
+
+            List<DataGridColumn> columns = new List<DataGridColumn>();
+            foreach (DataColumn column in dataTablee.Columns)
             {
-                Models.User user = new Models.User
+                DataGridTextColumn textColumn = new DataGridTextColumn
                 {
-                    Id = (int)reader["Id"],
-                    Login = reader["Login"].ToString(),
-                    Role = reader["Role"].ToString()
-                    // Set other properties as needed
+                    Header = column.ColumnName,
+                    Binding = new Avalonia.Data.Binding($"[{column.ColumnName}]")
                 };
-                users.Add(user);
+                dataTable.Columns.Add(textColumn);
             }
         }
-
-        dataTable.Items = users;
     }
 
     private void ExitApp(object? sender, RoutedEventArgs e)
