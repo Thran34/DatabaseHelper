@@ -2,18 +2,18 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using DatabaseHelper.Models;
+using DatabaseHelper.Views;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.ObjectModel;
 
 namespace DatabaseHelper;
 
-public partial class GetStartedWindow : Window
+public partial class SelectWholeTableWindow : Window
 {
-    private ObservableCollection<User> users;
+    private ObservableCollection<Models.User> users;
 
-    public GetStartedWindow()
+    public SelectWholeTableWindow()
     {
         InitializeComponent();
         this.AttachDevTools();
@@ -23,7 +23,7 @@ public partial class GetStartedWindow : Window
     {
         AvaloniaXamlLoader.Load(this);
         dataTable = this.FindControl<DataGrid>("dataTable");
-        users = new ObservableCollection<User>();
+        users = new ObservableCollection<Models.User>();
         PopulateDataTable();
 
     }
@@ -40,7 +40,7 @@ public partial class GetStartedWindow : Window
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                User user = new User
+                Models.User user = new Models.User
                 {
                     Id = (int)reader["Id"],
                     Login = reader["Login"].ToString(),
@@ -62,5 +62,18 @@ public partial class GetStartedWindow : Window
     private void MinimizeApp(object? sender, RoutedEventArgs e)
     {
         WindowState = WindowState.Minimized;
+    }
+
+    private void GoBack(object? sender, RoutedEventArgs e)
+    {
+        var mainWindow = new MainWindow();
+        mainWindow.Show();
+        Close();
+    }
+
+    private void AddNewRow(object? sender, RoutedEventArgs e)
+    {
+
+
     }
 }

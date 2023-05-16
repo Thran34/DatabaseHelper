@@ -15,7 +15,7 @@ namespace DatabaseHelper.Views
 
         private void Button_OnClick(object? sender, RoutedEventArgs e)
         {
-            var k = new GetStartedWindow();
+            var k = new SelectWholeTableWindow();
             Content = k.Content;
         }
 
@@ -34,12 +34,12 @@ namespace DatabaseHelper.Views
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Text;
             var mainWindow = new MainWindow();
-            var getStartedWindow = new GetStartedWindow();
+            var selectDatabaseWindow = new SelectDatabaseWindow();
             bool isValid = await Task.Run(() => MainWindowViewModel.ValidateUserCredentials(username, password));
 
             if (isValid)
             {
-                getStartedWindow.Show();
+                selectDatabaseWindow.Show();
             }
             else
             {

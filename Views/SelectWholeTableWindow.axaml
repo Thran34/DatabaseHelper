@@ -2,8 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:DatabaseHelper.ViewModels"
         xmlns:viewModels="clr-namespace:DatabaseHelper.ViewModels"
-        x:Class="DatabaseHelper.GetStartedWindow"
-        x:DataType="vm:GetStartedWindowViewModel"
+        x:Class="DatabaseHelper.SelectWholeTableWindow"
+        x:DataType="vm:SelectWholeTableViewModel"
         Height="600" Width="900"
         Title="DatabaseHelper"
         Icon="/Assets/avalonia-logo.ico"
@@ -31,7 +31,17 @@
 		</Grid>
 
 		<Grid>
-			<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button Width="30" Height="30" Margin="0,5,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="AddNewRow">
+                    <Button.Content>
+                        <Image Source="/Assets/plus.ico" Width="30" Height="30" />
+                    </Button.Content>
+                </Button>
+                <Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
+                    <Button.Content>
+                        <Image Source="/Assets/arrow.ico" Width="30" Height="30" />
+                    </Button.Content>
+                </Button>
                 <Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
 					<Button.Content>
 						<Image Source="/Assets/minimize.ico" Width="30" Height="30" />

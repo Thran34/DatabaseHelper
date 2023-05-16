@@ -21,6 +21,7 @@
     <None Remove="Assets\disket.ico" />
     <None Remove="Assets\exit.ico" />
     <None Remove="Assets\minimize.ico" />
+    <None Remove="Assets\plus.ico" />
     <None Remove="Assets\user.ico" />
     <None Remove="Assets\vector.ico" />
   </ItemGroup>
@@ -46,6 +47,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.SqlServer.SqlManagementObjects" Version="170.13.0" />
     <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\SelectWholeTableWindow.axaml.cs">
+      <DependentUpon>SelectWholeTableWindow.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
