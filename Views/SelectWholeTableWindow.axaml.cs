@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using DatabaseHelper.Models;
 using DatabaseHelper.Views;
 using Microsoft.Data.SqlClient;
 using System;
@@ -15,26 +16,27 @@ public partial class SelectWholeTableWindow : Window
 
     public SelectWholeTableWindow()
     {
-        InitializeComponent();
+
+    }
+    public SelectWholeTableWindow(string selectedTable, string selectedDatabase)
+    {
+        InitializeComponent(selectedTable, selectedDatabase);
         this.AttachDevTools();
     }
 
-    private void InitializeComponent()
+    private void InitializeComponent(string selectedTable, string selectedDatabase)
     {
         AvaloniaXamlLoader.Load(this);
+        users = new ObservableCollection<User>();
         dataTable = this.FindControl<DataGrid>("dataTable");
-        users = new ObservableCollection<Models.User>();
-        PopulateDataTable();
-
+        PopulateDataTable(selectedTable, selectedDatabase);
     }
 
-    private void PopulateDataTable()
+    private void PopulateDataTable(string selectedTable, string selectedDatabase)
     {
-        var commandq = @"SELECT * FROM USERS";
-        using (var connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=DatabaseHelper;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+        var commandq = @$"SELECT * FROM {selectedTable}";
+        using (var connection = new SqlConnection(@$"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={selectedDatabase};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
         {
-
-
             SqlCommand command = new SqlCommand(commandq, connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();

@@ -11,19 +11,21 @@ public partial class SelectTableWindow : Window
 {
     private ObservableCollection<string> tb;
 
+    private string _selectedDatabase;
     public SelectTableWindow()
     {
 
     }
-    public SelectTableWindow(string databaseName)
+    public SelectTableWindow(string selectedDatabase)
     {
+        _selectedDatabase = selectedDatabase;
         InitializeComponent();
-        PopulateList(databaseName);
+        PopulateList(selectedDatabase);
     }
 
-    private void PopulateList(string databaseName)
+    private void PopulateList(string selectedDatabase)
     {
-        string connectionString = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={databaseName};Integrated Security=True;";
+        string connectionString = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={selectedDatabase};Integrated Security=True;";
         tables = this.FindControl<ListBox>("tables");
         tb = new ObservableCollection<string>();
         try
@@ -84,6 +86,12 @@ public partial class SelectTableWindow : Window
 
     private void SelectButton_Click(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        if (tables.SelectedItem != null)
+        {
+            string selectedTable = tables.SelectedItem.ToString();
+            SelectWholeTableWindow selectTableWindow = new SelectWholeTableWindow(selectedTable, _selectedDatabase);
+            selectTableWindow.Show();
+            this.Close();
+        }
     }
 }
