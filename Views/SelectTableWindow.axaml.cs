@@ -7,21 +7,25 @@ using System.Collections.ObjectModel;
 
 namespace DatabaseHelper;
 
-public partial class SelectDatabaseWindow : Window
+public partial class SelectTableWindow : Window
 {
-    private ObservableCollection<string> datab;
+    private ObservableCollection<string> tb;
 
-    public SelectDatabaseWindow()
+    public SelectTableWindow()
+    {
+
+    }
+    public SelectTableWindow(string databaseName)
     {
         InitializeComponent();
-        PopulateList();
+        PopulateList(databaseName);
     }
 
-    private void PopulateList()
+    private void PopulateList(string databaseName)
     {
-        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;";
-        databases = this.FindControl<ListBox>("databases");
-        datab = new ObservableCollection<string>();
+        string connectionString = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={databaseName};Integrated Security=True;";
+        tables = this.FindControl<ListBox>("tables");
+        tb = new ObservableCollection<string>();
         try
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -30,17 +34,20 @@ public partial class SelectDatabaseWindow : Window
 
                 SqlCommand command =
                     new SqlCommand(
-                        "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')",
+                        @"SELECT *
+                FROM INFORMATION_SCHEMA.TABLES
+                WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'dbo';
+                ",
                         connection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    string databaseName = reader["name"].ToString();
-                    datab.Add(databaseName);
+                    string tableName = reader["TABLE_NAME"].ToString();
+                    tb.Add(tableName);
                 }
 
-                databases.Items = datab;
+                tables.Items = tb;
                 reader.Close();
             }
         }
@@ -51,10 +58,13 @@ public partial class SelectDatabaseWindow : Window
 
         Console.ReadLine();
     }
-
     private void InitializeComponent()
     {
         AvaloniaXamlLoader.Load(this);
+    }
+    private void AddNewTable(object? sender, RoutedEventArgs e)
+    {
+        throw new System.NotImplementedException();
     }
 
     private void GoBack(object? sender, RoutedEventArgs e)
@@ -72,19 +82,8 @@ public partial class SelectDatabaseWindow : Window
         throw new System.NotImplementedException();
     }
 
-    private void AddNewDatabase(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
     private void SelectButton_Click(object? sender, RoutedEventArgs e)
     {
-        if (databases.SelectedItem != null)
-        {
-            string selectedDatabase = databases.SelectedItem.ToString();
-            SelectTableWindow selectTableWindow = new SelectTableWindow(selectedDatabase);
-            selectTableWindow.Show();
-            this.Close();
-        }
+        throw new System.NotImplementedException();
     }
 }
