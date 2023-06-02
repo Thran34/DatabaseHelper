@@ -108,7 +108,7 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-			<Button Grid.Row="0" Grid.Column="0" Margin="15" Background="LightBlue">
+			<Button Grid.Row="0" Grid.Column="0" Margin="15" Background="LightBlue" Click="OpenDrawIo">
 				<Button.Content>
 					<Image Source="/Assets/vector.ico" Width="110" Height="110" />
 				</Button.Content>

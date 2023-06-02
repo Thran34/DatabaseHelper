@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DatabaseHelper.ViewModels;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace DatabaseHelper.Views
@@ -57,12 +58,20 @@ namespace DatabaseHelper.Views
 
         private void LearnDotNet(object? sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://learn.microsoft.com/en-us/dotnet/");
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://learn.microsoft.com/en-us/dotnet/",
+                UseShellExecute = true
+            });
         }
 
         private async void LearnSql(object? sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://learn.microsoft.com/en-us/sql/?view=sql-server-ver16");
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://learn.microsoft.com/en-us/sql/?view=sql-server-ver16/",
+                UseShellExecute = true
+            });
         }
 
         private void OpenFileConverter(object? sender, RoutedEventArgs e)
@@ -70,6 +79,15 @@ namespace DatabaseHelper.Views
             var fileConversionWindow = new FileConversionWindow();
             fileConversionWindow.Show();
             Close();
+        }
+
+        private void OpenDrawIo(object? sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://app.diagrams.net/",
+                UseShellExecute = true
+            });
         }
     }
 }
