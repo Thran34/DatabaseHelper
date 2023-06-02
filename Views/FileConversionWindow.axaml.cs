@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using DatabaseHelper.ViewModels;
 using DatabaseHelper.Views;
 
 namespace DatabaseHelper;
@@ -33,8 +34,11 @@ public partial class FileConversionWindow : Window
         Close();
     }
 
-    private void BrowseFileExplorer(object sender, RoutedEventArgs e)
+    private async void BrowseFileExplorer(object sender, RoutedEventArgs e)
     {
-
+        var dialog = new OpenFolderDialog();
+        string directoryName = await dialog.ShowAsync(this);
+        FileConversionViewModel viewModel = new FileConversionViewModel();
+        viewModel.CreateDatabase(directoryName);
     }
 }
