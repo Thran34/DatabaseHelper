@@ -30,7 +30,6 @@ namespace DatabaseHelper.ViewModels
                     fileFullPath = folderPath + "\\" + file.Name;
                     filename = file.Name.Replace(".xlsx", "");
 
-                    //Create Excel Connection
                     string ConStr;
                     string HDR;
                     HDR = "YES";
@@ -56,7 +55,6 @@ namespace DatabaseHelper.ViewModels
                             adp.Fill(dt);
 
 
-                            // Create Table if does not exists                
                             string tableDDL = "";
                             tableDDL += "IF Not EXISTS (SELECT * FROM sys.objects WHERE object_id = ";
                             tableDDL += "OBJECT_ID(N'[dbo].[" + filename + "]') AND type in (N'U'))";
@@ -77,7 +75,6 @@ namespace DatabaseHelper.ViewModels
                             SqlCommand myCommand = new SqlCommand(tableDDL, SQLConnection);
                             myCommand.ExecuteNonQuery();
 
-                            //Load the data from DataTable to SQL Server Table.
                             SqlBulkCopy blk = new SqlBulkCopy(SQLConnection);
                             blk.DestinationTableName = "[" + filename + "]";
                             blk.WriteToServer(dt);

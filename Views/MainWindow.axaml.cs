@@ -2,12 +2,13 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DatabaseHelper.ViewModels;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace DatabaseHelper.Views
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
@@ -35,18 +36,14 @@ namespace DatabaseHelper.Views
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Text;
             var mainWindow = new MainWindow();
-            var selectDatabaseWindow = new SelectDatabaseWindow();
             bool isValid = await Task.Run(() => MainWindowViewModel.ValidateUserCredentials(username, password));
 
-            if (isValid)
-            {
-                selectDatabaseWindow.Show();
-            }
-            else
+            if (!isValid)
             {
                 var errorWindow = new ErrorWindow();
                 errorWindow.Show();
             }
+
         }
 
 
@@ -64,6 +61,7 @@ namespace DatabaseHelper.Views
                 UseShellExecute = true
             });
         }
+
 
         private async void LearnSql(object? sender, RoutedEventArgs e)
         {

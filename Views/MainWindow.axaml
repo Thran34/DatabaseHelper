@@ -9,7 +9,8 @@
         Icon="/Assets/avalonia-logo.ico"
         WindowStartupLocation="CenterScreen"
         HasSystemDecorations="False">
-	<Window.Styles>
+
+    <Window.Styles>
 		<Style Selector="Button">
 			<Setter Property="Opacity" Value="1"/>
 		</Style>
@@ -108,16 +109,18 @@
 				<ColumnDefinition Width="Auto" />
 			</Grid.ColumnDefinitions>
 
-			<Button Grid.Row="0" Grid.Column="0" Margin="15" Background="LightBlue" Click="OpenDrawIo">
-				<Button.Content>
-					<Image Source="/Assets/vector.ico" Width="110" Height="110" />
-				</Button.Content>
-				<Button.Transitions>
-					<Transitions>
-						<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
-					</Transitions>
-				</Button.Transitions>
-			</Button>
+
+            <Button Grid.Row="0" Grid.Column="0" Margin="15" Background="LightBlue" Click="OpenDrawIo" IsEnabled="{Binding isUserLoggedIn}">
+                <Button.Content>
+                    <Image Source="/Assets/vector.ico" Width="110" Height="110" />
+                </Button.Content>
+                <Button.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
+                    </Transitions>
+                </Button.Transitions>
+            </Button>
+
 			<Button Grid.Row="0" Grid.Column="1" Margin="15" Background="LightGreen" Click="OpenFileConverter">
 				<Button.Content>
 					<Image Source="/Assets/DataImport.ico"  Width="110" Height="110" />

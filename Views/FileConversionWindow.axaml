@@ -59,7 +59,7 @@
 		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 150,0,0,60"
                 Content="Browse" Click="BrowseFileExplorer" />
 		<ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" Minimum="0" Maximum="100" Margin=" 0,50,0,0"></ProgressBar>
-		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,100,0,0"
-                Content="Upload"/>
+		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,100,0,0" Click="Submit"
+                Content="Select"/>
     </Grid>
 </Window>
