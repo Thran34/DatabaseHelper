@@ -50,9 +50,9 @@
 
 
 		<Grid>
-			<ListBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="databases" SelectionMode="Single">
+			<ListBox HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Databases" SelectionMode="Single">
 			</ListBox>
-			<Button Content="Select" Click="SelectButton_Click" Margin="0 10"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+			<Button Content="Select" Click="SelectDatabase" Margin="0 10"  VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
 		</Grid>
 	</Grid>
 

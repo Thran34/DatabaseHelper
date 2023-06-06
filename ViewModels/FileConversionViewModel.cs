@@ -8,11 +8,10 @@ namespace DatabaseHelper.ViewModels
 {
     public class FileConversionViewModel : ViewModelBase
     {
-        public void CreateDatabase(string folderPath)
+        public void CreateDatabase(string folderPath, string databaseName)
         {
             try
             {
-                string databaseName = "TESTY";
                 string SQLServerName = "(local)";
 
                 SqlConnection SQLConnection = new SqlConnection();
@@ -38,7 +37,6 @@ namespace DatabaseHelper.ViewModels
                                                                               HDR + ";IMEX=1\"";
                     OleDbConnection cnn = new OleDbConnection(ConStr);
 
-                    //Get Sheet Name
                     cnn.Open();
                     DataTable dtSheet = cnn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
                     string sheetname;
@@ -48,7 +46,6 @@ namespace DatabaseHelper.ViewModels
                         if (drSheet["TABLE_NAME"].ToString().Contains("$"))
                         {
                             sheetname = drSheet["TABLE_NAME"].ToString();
-                            //Load DataTable with Sheet Data
                             OleDbCommand oconn = new OleDbCommand("select * from [" + sheetname + "]", cnn);
                             OleDbDataAdapter adp = new OleDbDataAdapter(oconn);
                             DataTable dt = new DataTable();
@@ -84,9 +81,9 @@ namespace DatabaseHelper.ViewModels
                     }
                 }
             }
-            catch (Exception exception)
+            catch (SqlException ex)
             {
-
+                Console.WriteLine($"Sql exception: {ex}");
             }
         }
     }

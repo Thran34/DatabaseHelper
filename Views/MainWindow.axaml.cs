@@ -29,8 +29,15 @@ namespace DatabaseHelper.Views
 
         private void SelectDatabase(object? sender, RoutedEventArgs e)
         {
-            var k = new SelectDatabaseWindow();
-            k.Show();
+            var selectDatabaseWindow = new SelectDatabaseWindow(false);
+            selectDatabaseWindow.Show();
+            this.Close();
+        }
+
+        private void SelectDatabaseForDataConversion(object? sender, RoutedEventArgs e)
+        {
+            var selectDatabaseWindow = new SelectDatabaseWindow(true);
+            selectDatabaseWindow.Show();
             this.Close();
         }
 
@@ -100,13 +107,6 @@ namespace DatabaseHelper.Views
                 FileName = "https://learn.microsoft.com/en-us/sql/?view=sql-server-ver16/",
                 UseShellExecute = true
             });
-        }
-
-        private void OpenFileConverter(object? sender, RoutedEventArgs e)
-        {
-            var fileConversionWindow = new FileConversionWindow();
-            fileConversionWindow.Show();
-            Close();
         }
 
         private void OpenDrawIo(object? sender, RoutedEventArgs e)

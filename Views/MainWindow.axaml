@@ -122,7 +122,7 @@
 				</Button.Transitions>
 			</Button>
 
-			<Button Name="DataImport" Grid.Row="0" Grid.Column="1" Margin="15" Background="LightGreen" Click="OpenFileConverter" IsEnabled="{Binding IsUserLoggedIn}">
+			<Button Name="DataImport" Grid.Row="0" Grid.Column="1" Margin="15" Background="LightGreen" Click="SelectDatabaseForDataConversion" IsEnabled="{Binding IsUserLoggedIn}">
 				<Button.Content>
 					<Image Source="/Assets/DataImport.ico"  Width="110" Height="110" />
 				</Button.Content>

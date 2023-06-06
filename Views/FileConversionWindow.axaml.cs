@@ -2,26 +2,34 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DatabaseHelper.ViewModels;
 using DatabaseHelper.Views;
+using System;
 using System.Linq;
 
 namespace DatabaseHelper;
 
 public partial class FileConversionWindow : Window
 {
-    private string selectedDirectory;
+    private string _selectedDirectory;
+    private string _selectedDatabase;
+
     public FileConversionWindow()
     {
-        InitializeComponent();
-    }
 
-    private void MinimizeApp(object? sender, RoutedEventArgs e)
+    }
+    public FileConversionWindow(string selectedDatabase)
     {
-        throw new System.NotImplementedException();
+        _selectedDatabase = selectedDatabase;
+        InitializeComponent();
     }
 
     private void ExitApp(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        Environment.Exit(0);
+    }
+
+    private void MinimizeApp(object? sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
     }
 
     private void GoBack(object? sender, RoutedEventArgs e)
@@ -34,13 +42,13 @@ public partial class FileConversionWindow : Window
     private async void BrowseFileExplorer(object sender, RoutedEventArgs e)
     {
         var dialog = new OpenFolderDialog();
-        selectedDirectory = await dialog.ShowAsync(this);
-        FilePathTextBox.Text = selectedDirectory.Split(@"\").Last();
+        _selectedDirectory = (await dialog.ShowAsync(this))!;
+        FilePathTextBox.Text = _selectedDirectory!.Split(@"\").Last();
     }
 
-    private async void Submit(object sender, RoutedEventArgs e)
+    private void Submit(object sender, RoutedEventArgs e)
     {
         var viewModel = new FileConversionViewModel();
-        viewModel.CreateDatabase(selectedDirectory);
+        viewModel.CreateDatabase(_selectedDirectory, _selectedDatabase);
     }
 }

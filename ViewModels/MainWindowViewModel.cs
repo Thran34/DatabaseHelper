@@ -10,7 +10,7 @@ namespace DatabaseHelper.ViewModels
 
         public bool IsUserLoggedIn
         {
-            get { return _isUserLoggedIn; }
+            get => _isUserLoggedIn;
             set
             {
                 _isUserLoggedIn = value;

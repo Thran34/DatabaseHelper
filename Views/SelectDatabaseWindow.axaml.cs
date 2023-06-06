@@ -1,56 +1,33 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using DatabaseHelper.ViewModels;
 using DatabaseHelper.Views;
-using Microsoft.Data.SqlClient;
 using System;
-using System.Collections.ObjectModel;
 
 namespace DatabaseHelper;
 
 public partial class SelectDatabaseWindow : Window
 {
-    private ObservableCollection<string> _databasesToSelect;
+    private readonly bool _shouldOpenFileConversion;
 
     public SelectDatabaseWindow()
     {
         InitializeComponent();
         PopulateList();
     }
+    public SelectDatabaseWindow(bool shouldOpenFileConversion)
+    {
+        _shouldOpenFileConversion = shouldOpenFileConversion;
+        InitializeComponent();
+        PopulateList();
+    }
 
     private void PopulateList()
     {
-        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;";
-        databases = this.FindControl<ListBox>("databases");
-        _databasesToSelect = new ObservableCollection<string>();
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                SqlCommand command =
-                    new SqlCommand(
-                        "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')",
-                        connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string? databaseName = reader["name"].ToString();
-                    if (databaseName != null) _databasesToSelect.Add(databaseName);
-                }
-
-                databases.Items = _databasesToSelect;
-                reader.Close();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error: " + ex.Message);
-        }
-
-        Console.ReadLine();
+        Databases = this.FindControl<ListBox>("Databases");
+        var viewModel = new SelectDatabaseViewModel();
+        viewModel.PopulateList(Databases);
     }
 
     private void InitializeComponent()
@@ -75,14 +52,10 @@ public partial class SelectDatabaseWindow : Window
         Close();
     }
 
-    private void SelectButton_Click(object? sender, RoutedEventArgs e)
+    private void SelectDatabase(object? sender, RoutedEventArgs e)
     {
-        if (databases.SelectedItem != null)
-        {
-            string selectedDatabase = databases.SelectedItem.ToString()!;
-            SelectTableWindow selectTableWindow = new SelectTableWindow(selectedDatabase);
-            selectTableWindow.Show();
-            this.Close();
-        }
+        var viewModel = new SelectDatabaseViewModel();
+        viewModel.SelectDatabase(Databases, _shouldOpenFileConversion);
+        this.Close();
     }
 }
