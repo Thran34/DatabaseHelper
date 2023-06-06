@@ -55,9 +55,8 @@
 			</Grid>
 		</Grid>
 
-	
-            <DataGrid x:Name="dataTable" AutoGenerateColumns="True" Margin="0,35,0,0">
-			</DataGrid>
+
+		<DataGrid x:Name="dataTable" AutoGenerateColumns="False" Margin="0,35,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></DataGrid>
     </Grid>
 		</ScrollViewer>
 </Window>

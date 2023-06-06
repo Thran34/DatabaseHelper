@@ -131,7 +131,7 @@
 					</Transitions>
 				</Button.Transitions>
 			</Button>
-			<Button Grid.Row="0" Grid.Column="2" Margin="15"  Background="Yellow">
+			<Button Grid.Row="0" Grid.Column="2" Margin="15"  Background="Yellow" Click="SelectDatabase">
 				<Button.Content>
 					<Image Source="/Assets/Code.ico"  Width="110" Height="110" />
 				</Button.Content>

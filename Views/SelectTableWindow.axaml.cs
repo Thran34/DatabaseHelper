@@ -91,6 +91,7 @@ public partial class SelectTableWindow : Window
             string selectedTable = tables.SelectedItem.ToString();
             SelectWholeTableWindow selectTableWindow = new SelectWholeTableWindow(selectedTable, _selectedDatabase);
             selectTableWindow.Show();
+
             this.Close();
         }
     }
