@@ -32,14 +32,9 @@
 
 		<Grid>
 			<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
-				<Button Width="30" Height="30" Margin="0,5,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
+				<Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
 					<Button.Content>
 						<Image Source="/Assets/arrow.ico" Width="30" Height="30" />
-					</Button.Content>
-				</Button>
-				<Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ShowUserInfo">
-					<Button.Content>
-						<Image Source="/Assets/user.ico" Width="30" Height="30" />
 					</Button.Content>
 				</Button>
 				<Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
@@ -47,7 +42,7 @@
 						<Image Source="/Assets/minimize.ico" Width="30" Height="30" />
 					</Button.Content>
 				</Button>
-				<Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitApp">
+				<Button Width="30" Height="30" Margin="0,5,15,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitApp">
 					<Button.Content>
 						<Image Source="/Assets/exit.ico" Width="30" Height="30" />
 					</Button.Content>
@@ -61,5 +56,5 @@
 		<ProgressBar HorizontalAlignment="Center" VerticalAlignment="Center" Minimum="0" Maximum="100" Margin=" 0,50,0,0"></ProgressBar>
 		<Button HorizontalAlignment="Center" VerticalAlignment="Center" Margin=" 0,100,0,0" Click="Submit"
                 Content="Select"/>
-    </Grid>
+	</Grid>
 </Window>

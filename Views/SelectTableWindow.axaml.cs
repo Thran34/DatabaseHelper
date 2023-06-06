@@ -9,7 +9,7 @@ namespace DatabaseHelper;
 
 public partial class SelectTableWindow : Window
 {
-    private ObservableCollection<string> tb;
+    private ObservableCollection<string> _table;
 
     private string _selectedDatabase;
     public SelectTableWindow()
@@ -27,7 +27,7 @@ public partial class SelectTableWindow : Window
     {
         string connectionString = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={selectedDatabase};Integrated Security=True;";
         tables = this.FindControl<ListBox>("tables");
-        tb = new ObservableCollection<string>();
+        _table = new ObservableCollection<string>();
         try
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -46,10 +46,10 @@ public partial class SelectTableWindow : Window
                 while (reader.Read())
                 {
                     string tableName = reader["TABLE_NAME"].ToString();
-                    tb.Add(tableName);
+                    _table.Add(tableName);
                 }
 
-                tables.Items = tb;
+                tables.Items = _table;
                 reader.Close();
             }
         }
@@ -86,9 +86,12 @@ public partial class SelectTableWindow : Window
     {
         if (tables.SelectedItem != null)
         {
-            string selectedTable = tables.SelectedItem.ToString();
-            SelectWholeTableWindow selectTableWindow = new SelectWholeTableWindow(selectedTable, _selectedDatabase);
-            selectTableWindow.Show();
+            string? selectedTable = tables.SelectedItem.ToString();
+            if (selectedTable != null)
+            {
+                SelectWholeTableWindow selectTableWindow = new SelectWholeTableWindow(selectedTable, _selectedDatabase);
+                selectTableWindow.Show();
+            }
 
             this.Close();
         }

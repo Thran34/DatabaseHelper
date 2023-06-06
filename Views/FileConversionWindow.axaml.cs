@@ -14,11 +14,6 @@ public partial class FileConversionWindow : Window
         InitializeComponent();
     }
 
-    private void ShowUserInfo(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
-
     private void MinimizeApp(object? sender, RoutedEventArgs e)
     {
         throw new System.NotImplementedException();
@@ -31,7 +26,7 @@ public partial class FileConversionWindow : Window
 
     private void GoBack(object? sender, RoutedEventArgs e)
     {
-        var mainWindow = new MainWindow();
+        var mainWindow = new MainWindow(true);
         mainWindow.Show();
         Close();
     }

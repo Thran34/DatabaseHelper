@@ -10,7 +10,7 @@ namespace DatabaseHelper;
 
 public partial class SelectDatabaseWindow : Window
 {
-    private ObservableCollection<string> databasesToSelect;
+    private ObservableCollection<string> _databasesToSelect;
 
     public SelectDatabaseWindow()
     {
@@ -22,7 +22,7 @@ public partial class SelectDatabaseWindow : Window
     {
         string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;";
         databases = this.FindControl<ListBox>("databases");
-        databasesToSelect = new ObservableCollection<string>();
+        _databasesToSelect = new ObservableCollection<string>();
         try
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -37,11 +37,11 @@ public partial class SelectDatabaseWindow : Window
 
                 while (reader.Read())
                 {
-                    string databaseName = reader["name"].ToString();
-                    databasesToSelect.Add(databaseName);
+                    string? databaseName = reader["name"].ToString();
+                    if (databaseName != null) _databasesToSelect.Add(databaseName);
                 }
 
-                databases.Items = databasesToSelect;
+                databases.Items = _databasesToSelect;
                 reader.Close();
             }
         }
@@ -70,7 +70,7 @@ public partial class SelectDatabaseWindow : Window
 
     private void GoBack(object? sender, RoutedEventArgs e)
     {
-        var mainWindow = new MainWindow();
+        var mainWindow = new MainWindow(true);
         mainWindow.Show();
         Close();
     }
@@ -79,7 +79,7 @@ public partial class SelectDatabaseWindow : Window
     {
         if (databases.SelectedItem != null)
         {
-            string selectedDatabase = databases.SelectedItem.ToString();
+            string selectedDatabase = databases.SelectedItem.ToString()!;
             SelectTableWindow selectTableWindow = new SelectTableWindow(selectedDatabase);
             selectTableWindow.Show();
             this.Close();

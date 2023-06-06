@@ -82,7 +82,8 @@
 		</Grid>
 
 		<Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="400" Margin="300,0,150,90">
-			<StackPanel>
+			<Label Name="LoggedInStatus" HorizontalContentAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="Green"/>
+			<StackPanel Name="LoginPanel">
 				<TextBlock Text="Username" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
 				<TextBox x:Name="UsernameTextBox" HorizontalContentAlignment="Center" FontWeight="Bold"/>
 				<TextBlock Text="Password" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>

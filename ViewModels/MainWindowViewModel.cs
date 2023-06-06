@@ -1,7 +1,6 @@
-﻿using ReactiveUI;
+﻿using DatabaseHelper.Services;
+using ReactiveUI;
 using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace DatabaseHelper.ViewModels
 {
@@ -18,12 +17,11 @@ namespace DatabaseHelper.ViewModels
                 this.RaiseAndSetIfChanged(ref _isUserLoggedIn, value);
             }
         }
-        public static bool ValidateUserCredentials(string username, string password)
-        {
-            using var context = new Context.Context();
-            bool isValid = Enumerable.Any(context.Users, user => username == user.Login && password == user.Password);
 
-            if (isValid)
+        public static bool LoginUser(string username, string password)
+        {
+            UserService service = new UserService();
+            if (service.LoginUser(username, password))
             {
                 return true;
             }
@@ -31,12 +29,6 @@ namespace DatabaseHelper.ViewModels
             return false;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
+        public new event PropertyChangedEventHandler? PropertyChanged;
     }
 }

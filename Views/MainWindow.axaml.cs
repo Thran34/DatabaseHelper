@@ -10,10 +10,21 @@ namespace DatabaseHelper.Views
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private bool _isUserLoggedIn;
+        public MainWindow(bool isUserLoggedIn)
+        {
+            InitializeComponent();
+            _isUserLoggedIn = isUserLoggedIn;
+
+            if (_isUserLoggedIn)
+            {
+                LoginPanel.IsVisible = false;
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
         }
 
         private void SelectDatabase(object? sender, RoutedEventArgs e)
@@ -37,7 +48,7 @@ namespace DatabaseHelper.Views
         {
             string username = UsernameTextBox.Text;
             string password = PasswordBox.Text;
-            bool isValid = await Task.Run(() => MainWindowViewModel.ValidateUserCredentials(username, password));
+            bool isValid = await Task.Run(() => MainWindowViewModel.LoginUser(username, password));
 
             if (!isValid)
             {
@@ -47,8 +58,15 @@ namespace DatabaseHelper.Views
             else
             {
                 EnableControlButtons();
-
+                DisableLoginPanel();
             }
+        }
+
+        private void DisableLoginPanel()
+        {
+            LoginPanel.IsVisible = false;
+            LoggedInStatus.IsVisible = true;
+            LoggedInStatus.Content = "Welcome! You are logged in.";
         }
 
         private void EnableControlButtons()
@@ -57,8 +75,8 @@ namespace DatabaseHelper.Views
             this.DataImport.IsEnabled = true;
             this.ShowDatabase.IsEnabled = true;
             this.Disk.IsEnabled = true;
+            _isUserLoggedIn = true;
         }
-
 
         private void RegisterUser(object? sender, RoutedEventArgs e)
         {
@@ -75,8 +93,7 @@ namespace DatabaseHelper.Views
             });
         }
 
-
-        private async void LearnSql(object? sender, RoutedEventArgs e)
+        private void LearnSql(object? sender, RoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo
             {

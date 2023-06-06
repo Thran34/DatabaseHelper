@@ -20,7 +20,11 @@ public partial class RegisterUserWindow : Window
 
         if (registrationSuccess)
         {
-            Close();
+            this.IsRegistrationSuccessful.IsVisible = true;
+            this.IsRegistrationSuccessful.Content = "User succesfully registered!";
+            this.ExitButton.IsVisible = true;
+            this.UserPanel.IsVisible = false;
+
         }
         else
         {

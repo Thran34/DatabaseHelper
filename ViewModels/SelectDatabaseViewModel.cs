@@ -1,6 +1,4 @@
-﻿//using System;
-
-namespace DatabaseHelper.ViewModels
+﻿namespace DatabaseHelper.ViewModels
 {
     internal class SelectDatabaseViewModel
     {

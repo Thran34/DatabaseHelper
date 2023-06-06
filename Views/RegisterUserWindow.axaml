@@ -9,26 +9,29 @@
         HasSystemDecorations="False">
 
 	<Grid>
-        <Grid Background="#4b0082" Height="35" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
+		<Grid Background="#4b0082" Height="35" VerticalAlignment="Top" HorizontalAlignment="Stretch" />
 
-        <Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeWindow">
-            <Button.Content>
-                <Image Source="/Assets/minimize.ico" Width="30" Height="30" />
-            </Button.Content>
-        </Button>
-        <Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitWindow">
-            <Button.Content>
-                <Image Source="/Assets/exit.ico" Width="30" Height="30" />
-            </Button.Content>
-        </Button>
+		<Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeWindow">
+			<Button.Content>
+				<Image Source="/Assets/minimize.ico" Width="30" Height="30" />
+			</Button.Content>
+		</Button>
+		<Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitWindow">
+			<Button.Content>
+				<Image Source="/Assets/exit.ico" Width="30" Height="30" />
+			</Button.Content>
+		</Button>
 
-		<StackPanel Margin="100,0,100,90" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
-			<TextBlock FontWeight="Bold" Text="Username" HorizontalAlignment="Center" FontSize="19"/>
-			<TextBox x:Name="UsernameTextBox" />
-			<TextBlock FontWeight="Bold" Text="Password" HorizontalAlignment="Center" FontSize="19"/>
-			<TextBox x:Name="PasswordBox" />
-			<Button FontWeight="Bold" Content="Register" HorizontalAlignment="Center" FontSize="19" Click="RegisterUser"/>
-		</StackPanel>
-
-    </Grid>
+		<Grid>
+			<StackPanel Name="UserPanel" Margin="100,0,100,90" Width="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<TextBlock FontWeight="Bold" Text="Username" HorizontalAlignment="Center" FontSize="19"/>
+				<TextBox x:Name="UsernameTextBox" />
+				<TextBlock FontWeight="Bold" Text="Password" HorizontalAlignment="Center" FontSize="19"/>
+				<TextBox x:Name="PasswordBox" />
+				<Button FontWeight="Bold" Content="Register" HorizontalAlignment="Center" FontSize="19" Click="RegisterUser"/>
+			</StackPanel>
+			<Label Name="IsRegistrationSuccessful" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Foreground="Green"/>
+			<Button Name="ExitButton" FontWeight="Bold" Content="Close" HorizontalAlignment="Center" Margin="0,75,0,0" FontSize="19" Click="ExitWindow" IsVisible="False"/>
+		</Grid>
+	</Grid>
 </Window>
