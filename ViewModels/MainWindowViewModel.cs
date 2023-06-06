@@ -1,18 +1,21 @@
-﻿using System.ComponentModel;
+﻿using ReactiveUI;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace DatabaseHelper.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private bool _isUserLoggedIn;
-        public bool isUserLoggedIn
+
+        public bool IsUserLoggedIn
         {
             get { return _isUserLoggedIn; }
             set
             {
                 _isUserLoggedIn = value;
-                OnPropertyChanged(nameof(isUserLoggedIn));
+                this.RaiseAndSetIfChanged(ref _isUserLoggedIn, value);
             }
         }
         public static bool ValidateUserCredentials(string username, string password)
@@ -30,9 +33,10 @@ namespace DatabaseHelper.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

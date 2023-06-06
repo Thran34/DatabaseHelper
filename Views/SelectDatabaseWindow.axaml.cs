@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using DatabaseHelper.Views;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ namespace DatabaseHelper;
 
 public partial class SelectDatabaseWindow : Window
 {
-    private ObservableCollection<string> datab;
+    private ObservableCollection<string> databasesToSelect;
 
     public SelectDatabaseWindow()
     {
@@ -21,7 +22,7 @@ public partial class SelectDatabaseWindow : Window
     {
         string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;";
         databases = this.FindControl<ListBox>("databases");
-        datab = new ObservableCollection<string>();
+        databasesToSelect = new ObservableCollection<string>();
         try
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -37,10 +38,10 @@ public partial class SelectDatabaseWindow : Window
                 while (reader.Read())
                 {
                     string databaseName = reader["name"].ToString();
-                    datab.Add(databaseName);
+                    databasesToSelect.Add(databaseName);
                 }
 
-                databases.Items = datab;
+                databases.Items = databasesToSelect;
                 reader.Close();
             }
         }
@@ -57,24 +58,21 @@ public partial class SelectDatabaseWindow : Window
         AvaloniaXamlLoader.Load(this);
     }
 
-    private void GoBack(object? sender, RoutedEventArgs e)
+    private void ExitApp(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        Environment.Exit(0);
     }
 
     private void MinimizeApp(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        WindowState = WindowState.Minimized;
     }
 
-    private void ExitApp(object? sender, RoutedEventArgs e)
+    private void GoBack(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
-    }
-
-    private void AddNewDatabase(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
+        var mainWindow = new MainWindow();
+        mainWindow.Show();
+        Close();
     }
 
     private void SelectButton_Click(object? sender, RoutedEventArgs e)

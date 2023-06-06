@@ -13,6 +13,7 @@ namespace DatabaseHelper.Views
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
 
         private void SelectDatabase(object? sender, RoutedEventArgs e)
@@ -43,7 +44,19 @@ namespace DatabaseHelper.Views
                 var errorWindow = new ErrorWindow();
                 errorWindow.Show();
             }
+            else
+            {
+                EnableControlButtons();
 
+            }
+        }
+
+        private void EnableControlButtons()
+        {
+            this.Draw.IsEnabled = true;
+            this.DataImport.IsEnabled = true;
+            this.ShowDatabase.IsEnabled = true;
+            this.Disk.IsEnabled = true;
         }
 
 

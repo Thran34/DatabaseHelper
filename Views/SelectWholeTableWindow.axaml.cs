@@ -3,10 +3,8 @@ using Avalonia.Controls;
 using Avalonia.Data;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using DatabaseHelper.Views;
 using Microsoft.Data.SqlClient;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -15,12 +13,14 @@ namespace DatabaseHelper;
 
 public partial class SelectWholeTableWindow : Window
 {
+    private readonly string _selectedDatabase;
     public SelectWholeTableWindow()
     {
 
     }
     public SelectWholeTableWindow(string selectedTable, string selectedDatabase)
     {
+        _selectedDatabase = selectedDatabase;
         InitializeComponent(selectedTable, selectedDatabase);
         this.AttachDevTools();
         PopulateDataTable(selectedTable, selectedDatabase, dataTable);
@@ -60,11 +60,10 @@ public partial class SelectWholeTableWindow : Window
                 dataGrid.Columns.Add(textColumn);
             }
 
-            // Convert DataTable to ObservableCollection<Dictionary<string, object>>
-            var collection = new ObservableCollection<CustomRow>();
+            var collection = new ObservableCollection<Dictionary<string, object>>();
             foreach (DataRow row in dataTable.Rows)
             {
-                var rowDict = new CustomRow();
+                var rowDict = new Dictionary<string, object>();
                 foreach (DataColumn column in dataTable.Columns)
                 {
                     rowDict.Add(column.ColumnName, row[column].ToString()?.Trim()!);
@@ -75,8 +74,6 @@ public partial class SelectWholeTableWindow : Window
             dataGrid.Items = collection;
         }
     }
-
-
 
     private void ExitApp(object? sender, RoutedEventArgs e)
     {
@@ -90,36 +87,8 @@ public partial class SelectWholeTableWindow : Window
 
     private void GoBack(object? sender, RoutedEventArgs e)
     {
-        var mainWindow = new MainWindow();
-        mainWindow.Show();
+        var selectTableWindow = new SelectTableWindow(_selectedDatabase);
+        selectTableWindow.Show();
         Close();
-    }
-
-    private void AddNewRow(object? sender, RoutedEventArgs e)
-    {
-
-
-    }
-}
-
-
-public class CustomRow : IEnumerable
-{
-    private Dictionary<string, object> _internalDict = new Dictionary<string, object>();
-
-    public object this[string key]
-    {
-        get { return _internalDict[key]; }
-        set { _internalDict[key] = value; }
-    }
-
-    public IEnumerator GetEnumerator()
-    {
-        return _internalDict.GetEnumerator();
-    }
-
-    public void Add(string key, object value)
-    {
-        _internalDict.Add(key, value);
     }
 }

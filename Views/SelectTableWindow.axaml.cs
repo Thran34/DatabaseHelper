@@ -64,24 +64,22 @@ public partial class SelectTableWindow : Window
     {
         AvaloniaXamlLoader.Load(this);
     }
-    private void AddNewTable(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
-    }
 
     private void GoBack(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
-    }
-
-    private void MinimizeApp(object? sender, RoutedEventArgs e)
-    {
-        throw new System.NotImplementedException();
+        var selectDatabaseWindow = new SelectDatabaseWindow();
+        selectDatabaseWindow.Show();
+        Close();
     }
 
     private void ExitApp(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        Environment.Exit(0);
+    }
+
+    private void MinimizeApp(object? sender, RoutedEventArgs e)
+    {
+        WindowState = WindowState.Minimized;
     }
 
     private void SelectButton_Click(object? sender, RoutedEventArgs e)

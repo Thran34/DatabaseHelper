@@ -13,50 +13,46 @@
 	<Design.DataContext>
 		<viewModels:MainWindowViewModel />
 	</Design.DataContext>
-    <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
-	<Grid Background="#e6e6fa">
-		<Grid Background="#4b0082" Height="35" VerticalAlignment="Top" />
+	<ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
 
-        <Grid Background="#fffff0" HorizontalAlignment="Left">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
-			</Grid.ColumnDefinitions>
+		<Grid Background="#e6e6fa">
+			<Grid Background="#4b0082" Height="35" VerticalAlignment="Top" />
 
-			<Grid Background="#4b0082" VerticalAlignment="Top">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="35" />
-				</Grid.RowDefinitions>
+			<Grid Background="#fffff0" HorizontalAlignment="Left">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" />
+				</Grid.ColumnDefinitions>
+
+				<Grid Background="#4b0082" VerticalAlignment="Top">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="35" />
+					</Grid.RowDefinitions>
+				</Grid>
+
 			</Grid>
 
-		</Grid>
-
-		<Grid>
-            <Grid HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Button Width="30" Height="30" Margin="0,5,110,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="AddNewRow">
-                    <Button.Content>
-                        <Image Source="/Assets/plus.ico" Width="30" Height="30" />
-                    </Button.Content>
-                </Button>
-                <Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
-                    <Button.Content>
-                        <Image Source="/Assets/arrow.ico" Width="30" Height="30" />
-                    </Button.Content>
-                </Button>
-                <Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
-					<Button.Content>
-						<Image Source="/Assets/minimize.ico" Width="30" Height="30" />
-					</Button.Content>
-				</Button>
-				<Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitApp">
-					<Button.Content>
-						<Image Source="/Assets/exit.ico" Width="30" Height="30" />
-					</Button.Content>
-				</Button>
+			<Grid>
+				<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
+					<Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
+						<Button.Content>
+							<Image Source="/Assets/arrow.ico" Width="30" Height="30" />
+						</Button.Content>
+					</Button>
+					<Button Width="30" Height="30" Margin="0,0,45,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="MinimizeApp">
+						<Button.Content>
+							<Image Source="/Assets/minimize.ico" Width="30" Height="30" />
+						</Button.Content>
+					</Button>
+					<Button Width="30" Height="30" Margin="0,5,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="ExitApp">
+						<Button.Content>
+							<Image Source="/Assets/exit.ico" Width="30" Height="30" />
+						</Button.Content>
+					</Button>
+				</Grid>
 			</Grid>
+
+
+			<DataGrid x:Name="dataTable" AutoGenerateColumns="False" Margin="0,35,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></DataGrid>
 		</Grid>
-
-
-		<DataGrid x:Name="dataTable" AutoGenerateColumns="False" Margin="0,35,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></DataGrid>
-    </Grid>
-		</ScrollViewer>
+	</ScrollViewer>
 </Window>
