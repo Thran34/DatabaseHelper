@@ -81,7 +81,6 @@ namespace DatabaseHelper.Views
             this.Draw.IsEnabled = true;
             this.DataImport.IsEnabled = true;
             this.ShowDatabase.IsEnabled = true;
-            this.Disk.IsEnabled = true;
             _isUserLoggedIn = true;
         }
 

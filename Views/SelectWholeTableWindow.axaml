@@ -20,8 +20,10 @@
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 
-		<!--Top Static Grid-->
 		<Grid Grid.Row="0" Background="#4b0082">
+			<Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+				<Label FontSize="16" FontWeight="Bold">If the data does not show up, click any column header.</Label>
+			</Grid>
 			<Grid HorizontalAlignment="Right" VerticalAlignment="Top">
 				<Button Width="30" Height="30" Margin="0,5,75,0" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" Click="GoBack">
 					<Button.Content>
@@ -41,7 +43,6 @@
 			</Grid>
 		</Grid>
 
-		<!-- Scrollable DataGrid -->
 		<ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 			<DataGrid x:Name="dataTable" AutoGenerateColumns="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"></DataGrid>
 		</ScrollViewer>

@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using DatabaseHelper.ViewModels;
 using DatabaseHelper.Views;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Linq;
 
@@ -43,7 +44,7 @@ public partial class FileConversionWindow : Window
     {
         var dialog = new OpenFolderDialog();
         _selectedDirectory = (await dialog.ShowAsync(this))!;
-        if (FilePathTextBox.Text != null)
+        if (!_selectedDirectory.IsNullOrEmpty())
         {
             FilePathTextBox.Text = _selectedDirectory!.Split(@"\").Last();
         }

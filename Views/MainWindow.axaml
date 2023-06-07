@@ -98,13 +98,12 @@
 			</StackPanel>
 		</Grid>
 
-		<Grid Margin="0,0,30,40" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+		<Grid Margin="0,0,120,40" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
@@ -142,16 +141,6 @@
 					</Transitions>
 				</Button.Transitions>
 			</Button>
-			<Button Name="Disk" Grid.Row="0" Grid.Column="3" Margin="15"  Background="Purple" IsEnabled="{Binding IsUserLoggedIn}">
-				<Button.Content>
-					<Image Source="/Assets/disket.ico"  Width="110" Height="110" />
-				</Button.Content>
-				<Button.Transitions>
-					<Transitions>
-						<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
-					</Transitions>
-				</Button.Transitions>
-			</Button>
-		</Grid>
+        </Grid>
 	</Grid>
 </Window>

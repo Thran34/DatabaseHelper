@@ -43,20 +43,20 @@ namespace DatabaseHelper.ViewModels
 
         private void ProcessFile(FileInfo file, string connectionString)
         {
-            string fileFullPath = Path.Combine(file.DirectoryName, file.Name);
+            string fileFullPath = Path.Combine(file.DirectoryName!, file.Name);
             string filename = file.Name.Replace(".xlsx", "");
             string excelConStr = string.Format(ExcelConnectionString, fileFullPath);
 
             using (OleDbConnection connection = new OleDbConnection(excelConStr))
             {
                 connection.Open();
-                DataTable dtSheet = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                DataTable dtSheet = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null)!;
 
                 foreach (DataRow drSheet in dtSheet.Rows)
                 {
-                    if (drSheet["TABLE_NAME"].ToString().Contains("$"))
+                    if (drSheet["TABLE_NAME"].ToString()!.Contains("$"))
                     {
-                        string sheetname = drSheet["TABLE_NAME"].ToString();
+                        string sheetname = drSheet["TABLE_NAME"].ToString()!;
                         DataTable dt = GetTableData(sheetname, connection);
 
                         CreateTableAndImportData(dt, filename, connectionString);
