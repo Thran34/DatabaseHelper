@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace DatabaseHelper.Services
 {
-    internal class UserService
+    public class UserService
     {
         private readonly string _filePath;
 
@@ -24,11 +24,23 @@ namespace DatabaseHelper.Services
 
         public bool RegisterUser(string username, string password)
         {
-            User user = new User { Login = username, Password = password };
             var users = LoadUsers();
+
+            if (users.Any(u => u.Login == username))
+            {
+                return false;
+            }
+
+            User user = new User { Login = username, Password = password };
             users.Add(user);
+
             string jsonString = JsonSerializer.Serialize(users);
-            File.WriteAllText(_filePath, jsonString);
+            using (var streamWriter = new StreamWriter(_filePath))
+            {
+                streamWriter.Write(jsonString);
+                streamWriter.Close();
+            }
+
             return true;
         }
         public bool LoginUser(string username, string password)
@@ -49,8 +61,21 @@ namespace DatabaseHelper.Services
             {
                 return new List<User>();
             }
-            string jsonString = File.ReadAllText(_filePath);
+
+            string jsonString;
+            using (var reader = new StreamReader(_filePath))
+            {
+                jsonString = reader.ReadToEnd();
+            }
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return new List<User>();
+            }
+
             return JsonSerializer.Deserialize<List<User>>(jsonString)!;
         }
+
+
     }
 }

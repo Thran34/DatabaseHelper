@@ -1,16 +1,13 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using Microsoft.Data.SqlClient;
+using DatabaseHelper.ViewModels;
 using System;
-using System.Collections.ObjectModel;
 
 namespace DatabaseHelper;
 
 public partial class SelectTableWindow : Window
 {
-    private ObservableCollection<string> _table;
-
     private string _selectedDatabase;
     public SelectTableWindow()
     {
@@ -25,40 +22,9 @@ public partial class SelectTableWindow : Window
 
     private void PopulateList(string selectedDatabase)
     {
-        string connectionString = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={selectedDatabase};Integrated Security=True;";
         tables = this.FindControl<ListBox>("tables");
-        _table = new ObservableCollection<string>();
-        try
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-
-                SqlCommand command =
-                    new SqlCommand(
-                        @"SELECT *
-                FROM INFORMATION_SCHEMA.TABLES
-                WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'dbo';
-                ",
-                        connection);
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string tableName = reader["TABLE_NAME"].ToString();
-                    _table.Add(tableName);
-                }
-
-                tables.Items = _table;
-                reader.Close();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Error: " + ex.Message);
-        }
-
-        Console.ReadLine();
+        var viewModel = new SelectTableViewModel();
+        viewModel.PopulateList(selectedDatabase, tables);
     }
     private void InitializeComponent()
     {
@@ -82,7 +48,7 @@ public partial class SelectTableWindow : Window
         WindowState = WindowState.Minimized;
     }
 
-    private void SelectButton_Click(object? sender, RoutedEventArgs e)
+    private void SelectTable(object? sender, RoutedEventArgs e)
     {
         if (tables.SelectedItem != null)
         {

@@ -15,7 +15,7 @@
             </Button.Content>
         </Button>
         <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock FontWeight="Bold">Invalid User</TextBlock>
+            <TextBlock Name="Message" FontWeight="Bold"/>
         </Grid>
     </Grid>
 </Window>

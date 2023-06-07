@@ -59,7 +59,7 @@ namespace DatabaseHelper.Views
 
             if (!isValid)
             {
-                var errorWindow = new ErrorWindow();
+                var errorWindow = new ErrorWindow("Invalid user name or password.");
                 errorWindow.Show();
             }
             else

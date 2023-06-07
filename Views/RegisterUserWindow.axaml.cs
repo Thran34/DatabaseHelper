@@ -28,7 +28,7 @@ public partial class RegisterUserWindow : Window
         }
         else
         {
-            var errorWindow = new ErrorWindow();
+            var errorWindow = new ErrorWindow("User already exists.");
             errorWindow.Show();
         }
     }
