@@ -16,6 +16,7 @@
     <None Remove="Assets\arrow.ico" />
     <None Remove="Assets\Code.ico" />
     <None Remove="Assets\csharp.ico" />
+    <None Remove="Assets\database.ico" />
     <None Remove="Assets\databaseicon.ico" />
     <None Remove="Assets\DataImport.ico" />
     <None Remove="Assets\disket.ico" />

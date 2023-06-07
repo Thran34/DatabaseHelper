@@ -7,40 +7,41 @@ namespace DatabaseHelper.ViewModels
 {
     internal class SelectTableViewModel
     {
-        private ObservableCollection<string> _table;
+        private ObservableCollection<string> _tables;
+
         public void PopulateList(string selectedDatabase, ListBox tables)
         {
             string connectionString = $@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={selectedDatabase};Integrated Security=True;";
 
-            _table = new ObservableCollection<string>();
+            _tables = new ObservableCollection<string>();
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    SqlCommand command =
-                        new SqlCommand(
-                            @"SELECT *
-                FROM INFORMATION_SCHEMA.TABLES
-                WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'dbo';
-                ",
-                            connection);
+                    string query = @"SELECT *
+                                 FROM INFORMATION_SCHEMA.TABLES
+                                 WHERE TABLE_TYPE = 'BASE TABLE' AND TABLE_SCHEMA = 'dbo';";
+
+                    SqlCommand command = new SqlCommand(query, connection);
                     SqlDataReader reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        string tableName = reader["TABLE_NAME"].ToString();
-                        _table.Add(tableName);
+                        string tableName = reader["TABLE_NAME"].ToString()!;
+                        _tables.Add(tableName);
                     }
 
-                    tables.Items = _table;
                     reader.Close();
                 }
+
+                tables.Items = _tables;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                ErrorWindow errorWindow = new ErrorWindow("Database not found.");
+                errorWindow.Show();
             }
         }
     }

@@ -43,7 +43,10 @@ public partial class FileConversionWindow : Window
     {
         var dialog = new OpenFolderDialog();
         _selectedDirectory = (await dialog.ShowAsync(this))!;
-        FilePathTextBox.Text = _selectedDirectory!.Split(@"\").Last();
+        if (FilePathTextBox.Text != null)
+        {
+            FilePathTextBox.Text = _selectedDirectory!.Split(@"\").Last();
+        }
     }
 
     private void Submit(object sender, RoutedEventArgs e)

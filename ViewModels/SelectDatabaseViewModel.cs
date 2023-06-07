@@ -1,64 +1,72 @@
 ﻿using Avalonia.Controls;
+using DatabaseHelper;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.ObjectModel;
 
-namespace DatabaseHelper.ViewModels
+internal class SelectDatabaseViewModel
 {
-    internal class SelectDatabaseViewModel
-    {
-        public void SelectDatabase(ListBox databases, bool shouldOpenFileConversion)
-        {
-            if (databases.SelectedItem != null)
-            {
-                string selectedDatabase = databases.SelectedItem.ToString()!;
-                if (shouldOpenFileConversion)
-                {
-                    FileConversionWindow fileConversionWindow = new FileConversionWindow(selectedDatabase);
-                    fileConversionWindow.Show();
-                }
+    private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;";
 
-                else
-                {
-                    SelectTableWindow selectTableWindow = new SelectTableWindow(selectedDatabase);
-                    selectTableWindow.Show();
-                }
+    public SelectDatabaseViewModel()
+    {
+
+    }
+    public void SelectDatabase(ListBox databases, bool shouldOpenFileConversion)
+    {
+        if (databases.SelectedItem != null)
+        {
+            string selectedDatabase = databases.SelectedItem.ToString()!;
+            if (shouldOpenFileConversion)
+            {
+                OpenFileConversionWindow(selectedDatabase);
+            }
+            else
+            {
+                OpenSelectTableWindow(selectedDatabase);
             }
         }
+    }
 
-        public void PopulateList(ListBox databases)
+    private void OpenFileConversionWindow(string selectedDatabase)
+    {
+        FileConversionWindow fileConversionWindow = new FileConversionWindow(selectedDatabase);
+        fileConversionWindow.Show();
+    }
+
+    private void OpenSelectTableWindow(string selectedDatabase)
+    {
+        SelectTableWindow selectTableWindow = new SelectTableWindow(selectedDatabase);
+        selectTableWindow.Show();
+    }
+
+    public void PopulateList(ListBox databases)
+    {
+        var databasesToSelect = new ObservableCollection<string>();
+        try
         {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True;";
-
-            var databasesToSelect = new ObservableCollection<string>();
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                connection.Open();
+
+                string query = "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')";
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    connection.Open();
-
-                    SqlCommand command =
-                        new SqlCommand(
-                            "SELECT name FROM sys.databases WHERE name NOT IN ('master', 'tempdb', 'model', 'msdb')",
-                            connection);
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        string? databaseName = reader["name"].ToString();
-                        if (databaseName != null) databasesToSelect.Add(databaseName);
-                    }
-
-                    databases.Items = databasesToSelect;
-                    reader.Close();
+                    string databaseName = reader["name"].ToString()!;
+                    databasesToSelect.Add(databaseName);
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
+
+                reader.Close();
             }
 
-            Console.ReadLine();
+            databases.Items = databasesToSelect;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
         }
     }
 }

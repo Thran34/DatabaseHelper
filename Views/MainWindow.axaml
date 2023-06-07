@@ -88,7 +88,7 @@
 				<TextBox x:Name="UsernameTextBox" HorizontalContentAlignment="Center" FontWeight="Bold"/>
 				<TextBlock Text="Password" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19"/>
 				<TextBox x:Name="PasswordBox" PasswordChar="*" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-				<Button Content="Login" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19" Click="LoginUser">
+				<Button Name="kwe" Content="Login" FontWeight="Bold" HorizontalAlignment="Center" FontSize="19" Click="LoginUser">
 					<Button.Transitions>
 						<Transitions>
 							<DoubleTransition Property="Opacity" Duration="0:0:0.2"/>
@@ -134,7 +134,7 @@
 			</Button>
 			<Button Name="ShowDatabase" Grid.Row="0" Grid.Column="2" Margin="15"  Background="Yellow" Click="SelectDatabase" IsEnabled="{Binding IsUserLoggedIn}">
 				<Button.Content>
-					<Image Source="/Assets/Code.ico"  Width="110" Height="110" />
+					<Image Source="/Assets/database.ico"  Width="110" Height="110" />
 				</Button.Content>
 				<Button.Transitions>
 					<Transitions>

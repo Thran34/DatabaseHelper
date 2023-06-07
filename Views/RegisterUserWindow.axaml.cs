@@ -26,11 +26,6 @@ public partial class RegisterUserWindow : Window
             this.UserPanel.IsVisible = false;
 
         }
-        else
-        {
-            var errorWindow = new ErrorWindow("User already exists.");
-            errorWindow.Show();
-        }
     }
 
     private void ExitWindow(object? sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Data;
 using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -28,44 +29,52 @@ namespace DatabaseHelper.ViewModels
         public void PopulateDataTable()
         {
             var commandq = @$"SELECT * FROM {_selectedTable}";
-            using (var connection = new SqlConnection(
-                       @$"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={_selectedDatabase};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+            try
             {
-                SqlCommand command = new SqlCommand(commandq, connection);
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                DataTable dataTable = new DataTable();
-                dataTable.Load(reader);
-
-                _dataGrid.Columns.Clear();
-
-                foreach (DataColumn column in dataTable.Columns)
+                using (var connection = new SqlConnection(
+                           @$"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog={_selectedDatabase};Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
                 {
-                    DataGridColumn textColumn = new DataGridTextColumn
-                    {
-                        Header = column.ColumnName,
-                        Binding = new Binding($"[{column.ColumnName}]")
+                    SqlCommand command = new SqlCommand(commandq, connection);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
 
-                    };
-                    textColumn.CanUserSort = true;
-                    _dataGrid.Columns.Add(textColumn);
-                }
+                    DataTable dataTable = new DataTable();
+                    dataTable.Load(reader);
 
-                var collection = new ObservableCollection<Dictionary<string, object>>();
-                foreach (DataRow row in dataTable.Rows)
-                {
-                    var rowDict = new Dictionary<string, object>();
+                    _dataGrid.Columns.Clear();
+
                     foreach (DataColumn column in dataTable.Columns)
                     {
-                        rowDict.Add(column.ColumnName, row[column].ToString()?.Trim()!);
+                        DataGridColumn textColumn = new DataGridTextColumn
+                        {
+                            Header = column.ColumnName,
+                            Binding = new Binding($"[{column.ColumnName}]")
+
+                        };
+                        textColumn.CanUserSort = true;
+                        _dataGrid.Columns.Add(textColumn);
                     }
 
-                    collection.Add(rowDict);
-                }
+                    var collection = new ObservableCollection<Dictionary<string, object>>();
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        var rowDict = new Dictionary<string, object>();
+                        foreach (DataColumn column in dataTable.Columns)
+                        {
+                            rowDict.Add(column.ColumnName, row[column].ToString()?.Trim()!);
+                        }
 
-                _dataGrid.Items = collection;
+                        collection.Add(rowDict);
+                    }
+
+                    _dataGrid.Items = collection;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
+
     }
 }
